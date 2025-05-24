@@ -1,5 +1,10 @@
+from langchain_community.tools.tavily_search import TavilySearchResults
 import requests
 
+def get_linkedin_url_for_name(name: str):
+    search = TavilySearchResults()
+    res = search.run(f"{name}")
+    return res
 
 def scrape_linkedin_profile(linkedin_profile_url: str):
     """scrape information from LinkedIn profiles,
@@ -19,11 +24,3 @@ def scrape_linkedin_profile(linkedin_profile_url: str):
     }
 
     return data
-
-
-if __name__ == "__main__":
-    print(
-        scrape_linkedin_profile(
-            linkedin_profile_url="https://www.linkedin.com/in/eden-marco/"
-        ),
-    )
